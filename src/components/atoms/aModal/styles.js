@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   description: {
-    textAlign: 'justify',
     marginBottom: 30
   },
   time: {

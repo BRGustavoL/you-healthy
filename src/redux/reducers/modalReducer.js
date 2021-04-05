@@ -1,7 +1,12 @@
-import { SET_MODAL_VISIBILITY } from '../actions/actionTypes'
+import { SET_MODAL_VISIBILITY, SET_MODAL_INFO } from '../actions/actionTypes'
 
 const initialState = {
-  isVisible: ''
+  isVisible: '',
+  info: {
+    title: '',
+    description: '',
+    duration: ''
+  }
 }
 
 export const modalReducer = (state = initialState, action) => {
@@ -10,6 +15,11 @@ export const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         isVisible: action.isVisible
+      }
+    case SET_MODAL_INFO:
+      return {
+        ...state,
+        info: action.info
       }
     default:
       return state

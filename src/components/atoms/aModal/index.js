@@ -10,7 +10,7 @@ import styles from './styles'
 
 class AModal extends Component {
   render() {
-    const { isVisible, setModalVisibility } = this.props
+    const { isVisible, info, setModalVisibility } = this.props
     return (
       <View style={ styles.centeredView }>
         <Modal
@@ -22,9 +22,9 @@ class AModal extends Component {
           <View style={ styles.centeredView }>
             <SVGInfo style={ styles.infoIcon } width="48" height="48" />
             <View style={ styles.modalView }>
-              <Text style={ styles.title }>Pilates</Text>
-              <Text style={ styles.description }>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</Text>
-              <Text style={ styles.time }>Duração: 4 minutos</Text>
+              <Text style={ styles.title }>{ info.title }</Text>
+              <Text style={ styles.description }>{ info.description }</Text>
+              <Text style={ styles.time }>Duração: { info.duration }</Text>
               <TouchableOpacity
                 style={ styles.closeButton }
                 onPress={() => setModalVisibility(false) }>
@@ -38,6 +38,9 @@ class AModal extends Component {
   }
 }
 const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility }, dispatch)
-const mapStateToProps = store => ({ isVisible: store.modalState.isVisible })
+const mapStateToProps = store => ({
+  isVisible: store.modalState.isVisible,
+  info: store.modalState.info
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AModal)

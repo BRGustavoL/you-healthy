@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, FlatList, TouchableOpacity, Text } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { setModalVisibility } from '../../../redux/actions/index.js'
+import { setModalVisibility, setModalInfo } from '../../../redux/actions/index.js'
 
 import SVGAgachamento from '../../../../assets/icons/agachamento.svg'
 import SVGAlongamento from '../../../../assets/icons/alongamento.svg'
@@ -14,6 +14,7 @@ import ATitle from '../../atoms/aTitle/index'
 import AModal from '../../atoms/aModal/index'
 import styles from './styles'
 
+import { exerciseInfo } from '../../../helpers/mock.js'
 
 function createRows(data, columns) {
   const rows = Math.floor(data.length / columns)
@@ -27,7 +28,7 @@ function createRows(data, columns) {
 }
 
 returnSVG = (type) => {
-  switch (type.name) {
+  switch (type.title) {
     case 'Agachamento':
       return ( <SVGAgachamento width="100" height="100" /> )
     case 'Alongamento':
@@ -45,12 +46,6 @@ class MExerciseRegister extends Component {
 
     this.state = {
       selectedItem: null,
-      data: [
-        { id: '1', name: 'Agachamento', time: '(1 min)' },
-        { id: '2', name: 'Alongamento', time: '(2 min)' },
-        { id: '3', name: 'Polichinelo', time: '(3 min)' },
-        { id: '4', name: 'Pilates', time: '(4 min)' }
-      ]
     }
   }
 
@@ -60,7 +55,15 @@ class MExerciseRegister extends Component {
 
   render() {
     const columns = 2
-    const { setModalVisibility } = this.props
+    const { setModalVisibility, setModalInfo } = this.props
+    setModal = (item) => {
+      setModalVisibility(true)
+      setModalInfo({
+        title: item.title,
+        description: item.description,
+        duration: item.duration
+      })
+    }
     return (
       <View style={ styles.exerciseRegister }>
         <View style={ styles.mForm }>
@@ -71,7 +74,7 @@ class MExerciseRegister extends Component {
           <AModal />
           <View style={ styles.mCardGrid }>
             <FlatList
-              data={ createRows(this.state.data, columns) }
+              data={ createRows(exerciseInfo, columns) }
               keyExtractor={ item => item.id }
               numColumns={ columns }
               renderItem={({ item }) => {
@@ -80,12 +83,12 @@ class MExerciseRegister extends Component {
                     <TouchableOpacity
                       style={ styles.mText }
                       onPress={ () => this.setExercise(item.id) }
-                      onLongPress={ () => setModalVisibility(true) }
+                      onLongPress={ () => setModal(item) }
                     >
                       { returnSVG(item) }
                     </TouchableOpacity>
-                    <Text style={ styles.mExeType }>{ item.name }</Text>
-                    <Text style={ styles.mExeTime }>{ item.time }</Text>
+                    <Text style={ styles.mExeType }>{ item.title }</Text>
+                    <Text style={ styles.mExeTime }>{ item.duration }</Text>
                     <Text style={ styles.mExeTime }>{ this.state.selectedId }</Text>
                   </View>
                 )
@@ -109,7 +112,10 @@ class MExerciseRegister extends Component {
     )
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility }, dispatch)
-const mapStateToProps = store => ({ isVisible: store.modalState.isVisible })
+const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility, setModalInfo }, dispatch)
+const mapStateToProps = store => ({
+  isVisible: store.modalState.isVisible,
+  info: store.modalState.info
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MExerciseRegister)
