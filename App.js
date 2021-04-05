@@ -2,9 +2,11 @@ import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index'
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useFonts } from 'expo-font'
+import { Store } from './src/redux/index'
+import { Provider } from 'react-redux'
 
 const config = {
   animation: 'spring',
@@ -36,26 +38,28 @@ function App() {
   if (!loaded) return null
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: '#01AA4F' },
-        }}
-      >
-        <Stack.Screen
-          name="ExerciseRegister"
-          component={ ExerciseRegister }
-          options={{
-            transitionSpec: {
-              open: config,
-              close: config
-            }
+    <Provider store={ Store }>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#01AA4F' },
           }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        >
+          <Stack.Screen
+            name="ExerciseRegister"
+            component={ ExerciseRegister }
+            options={{
+              transitionSpec: {
+                open: config,
+                close: config
+              }
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
 

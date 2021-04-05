@@ -31,9 +31,26 @@ const styles = StyleSheet.create({
     borderColor: '#dbdbdb',
     borderWidth: 1
   },
+  mItemSelected: {
+    alignItems: 'center',
+    flexBasis: 0,
+    flexGrow: 1,
+    margin: 8,
+    padding: 20,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#F78E00',
+  },
   mText: {
     height: 100,
     color: '#333333'
+  },
+  mExeType: {
+    marginTop: 4,
+    color: '#737373'
+  },
+  mExeTime: {
+    fontSize: 10
   }
 })
 
