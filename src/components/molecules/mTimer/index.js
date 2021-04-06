@@ -21,25 +21,28 @@ class MTimer extends Component {
             strokeWidth={ 10 }
             isPlaying
             duration={ this.props.duration }
-            colors={[
-              ['#00CC66', 0.6],
-              ['#0D7BFF', 0.3],
-              ['#FF2D0D', 0.2],
-            ]}
-            // onComplete={ () => someFunction() }
+            colors="#ad7221"
+            // colors={[
+            //   ['#00CC66', 0.6],
+            //   ['#0D7BFF', 0.3],
+            //   ['#FF2D0D', 0.2],
+            // ]}
+            onComplete={() => {
+              return [true, 0]
+            }}
           >
             {({ remainingTime, animatedColor }) => (
               <View style={ styles.insideCircle }>
                 <Animated.Text
-                  style={{ ...styles.topText, color: animatedColor }}>
+                  style={ styles.topText }>
                   Boora!
                 </Animated.Text>
                 <Animated.Text
-                  style={{ ...styles.remainingTime, color: animatedColor }}>
+                  style={ styles.remainingTime }>
                   { remainingTime }
                 </Animated.Text>
                 <Animated.Text
-                  style={{ ...styles.bottomText, color: animatedColor }}>
+                  style={ styles.bottomText }>
                   Just Do It!
                 </Animated.Text>
               </View>
