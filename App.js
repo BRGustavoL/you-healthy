@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
-import MExerciseRegister from './src/components/molecules/mExerciseRegister/index'
+import { StyleSheet, View, Dimensions } from 'react-native'
+import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
+import MTimer from './src/components/molecules/mTimer/index.js'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useFonts } from 'expo-font'
 import { Store } from './src/redux/index'
 import { Provider } from 'react-redux'
 
@@ -20,53 +20,70 @@ const config = {
   },
 }
 
-function ExerciseRegister() {
+const ExerciseRegister = (props) => {
   return (
     <View style={ styles.container }>
       <StatusBar style="auto" />
-      <MExerciseRegister />
+      <MExerciseRegister navigation={ props.navigation } />
     </View>
-  );
+  )
 }
+
+const Timer = (props) => {
+  return (
+    <View style={ styles.container }>
+      <StatusBar style="auto" />
+      <MTimer duration="4" navigation={ props.navigation } />
+    </View>
+  )
+}
+
 const Stack = createStackNavigator()
 
-function App() {
-  const [loaded] = useFonts({
-    Roboto: require('./assets/fonts/Roboto.ttf')
-  })
-
-  if (!loaded) return null
-
-  return (
-    <Provider store={ Store }>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#01AA4F' },
-          }}
-        >
-          <Stack.Screen
-            name="ExerciseRegister"
-            component={ ExerciseRegister }
-            options={{
-              transitionSpec: {
-                open: config,
-                close: config
-              }
+class App extends Component {
+  render () {
+    return (
+      <Provider store={ Store }>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+              headerTintColor: 'white',
+              headerStyle: { backgroundColor: '#01AA4F' },
             }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  )
+          >
+            <Stack.Screen
+              name="ExerciseRegister"
+              component={ ExerciseRegister }
+              options={{
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+            <Stack.Screen
+              name="Timer"
+              component={ Timer }
+              options={{
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#fff'
+    height: '100%',
+    backgroundColor: '#FFF'
   }
 })
 

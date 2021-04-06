@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import styles from './styles' 
 
-class AButton extends Component {
-  Button = () => {
-    return (
-      <TouchableOpacity style={[ styles.button, this.props.style ]}>
-        <Text style={ styles.labelButton }> { this.props.label } </Text>
-      </TouchableOpacity>
-    )
-  }
-
-  Link = () => {
-    return (
-      <TouchableOpacity style={[ styles.link, this.props.style ]}>
-        <Text style={ styles.labelLink }> { this.props.label } </Text>
-      </TouchableOpacity>
-    )
-  }
-
-  render() {
-    return (
-      <View>
-        { this.props.type === 'button' ? this.Button() : this.Link() }
-      </View>
-    )
-  }
+const Button = ({ text, onPress, ownStyle }) => {
+  return (
+    <TouchableOpacity
+      onPress={ onPress }
+      style={[ styles.button, ownStyle ]}
+    >
+      <Text style={ styles.labelButton }> { text } </Text>
+    </TouchableOpacity>
+  )
 }
 
-export default AButton
+const Link = () => {
+  return (
+    <TouchableOpacity
+      onPress={ onPress }
+      style={[ styles.link, this.props.style ]}
+    >
+      <Text style={ styles.labelLink }> { text } </Text>
+    </TouchableOpacity>
+  )
+}
+
+export default Button

@@ -45,17 +45,18 @@ class MExerciseRegister extends Component {
     super(props)
 
     this.state = {
-      selectedItem: null,
+      selectedItem: null
     }
   }
 
-  setExercise = (id) => {
-    this.setState({ selectedItem: id })
+  doRedirect = () => {
+    this.props.navigation.navigate('Timer')
   }
 
   render() {
     const columns = 2
     const { setModalVisibility, setModalInfo } = this.props
+
     setModal = (item) => {
       setModalVisibility(true)
       setModalInfo({
@@ -64,6 +65,11 @@ class MExerciseRegister extends Component {
         duration: item.duration
       })
     }
+
+    setExercise = (id) => {
+      this.setState({ selectedItem: id })
+    }
+
     return (
       <View style={ styles.exerciseRegister }>
         <View style={ styles.mForm }>
@@ -82,7 +88,7 @@ class MExerciseRegister extends Component {
                   <View style={ item.id === this.state.selectedId ? styles.mItemSelected : styles.mItem }>
                     <TouchableOpacity
                       style={ styles.mText }
-                      onPress={ () => this.setExercise(item.id) }
+                      onPress={ () => setExercise(item.id) }
                       onLongPress={ () => setModal(item) }
                     >
                       { returnSVG(item) }
@@ -97,15 +103,14 @@ class MExerciseRegister extends Component {
           </View>
         </View>
         <View style={ styles.mFormActionButtons }>
-          <AButton
+          {/* <AButton
             style={ styles.mLink }
-            type="link"
             label="Agora não"
-          />
+          /> */}
           <AButton
             style={ styles.mButton }
-            type="button"
-            label="Iniciar"
+            text="Iniciar"
+            onPress={ () => this.doRedirect() }
           />
         </View>
       </View>
