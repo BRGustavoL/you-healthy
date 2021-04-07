@@ -33,7 +33,7 @@ const Timer = (props) => {
   return (
     <View style={ styles.container }>
       <StatusBar style="auto" />
-      <MTimer duration="4" navigation={ props.navigation } />
+      <MTimer duration="60" navigation={ props.navigation } />
     </View>
   )
 }

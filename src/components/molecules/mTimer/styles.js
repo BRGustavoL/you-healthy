@@ -2,7 +2,9 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   mTitle: {
-    color: 'white'
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 40,
   },
   mTimer: {
     paddingBottom: 64,

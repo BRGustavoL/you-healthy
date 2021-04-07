@@ -5,14 +5,16 @@ import styles from './styles.js'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 
 import ATitle from '../../atoms/aTitle/index.js'
-
-
+import AButton from '../../atoms/aButton/index.js'
 
 class MTimer extends Component {
   render() {
     return (
       <View style={ styles.mTimer }>
-        <ATitle style={ styles.mTitle } title="Create log" />
+        <ATitle
+          style={ styles.mTitle }
+          title="Polichinelos"
+        />
 
         <View style={ styles.container }>
           <CountdownCircleTimer
@@ -21,7 +23,7 @@ class MTimer extends Component {
             strokeWidth={ 10 }
             isPlaying
             duration={ this.props.duration }
-            colors="#ad7221"
+            colors="white"
             // colors={[
             //   ['#00CC66', 0.6],
             //   ['#0D7BFF', 0.3],
@@ -49,6 +51,12 @@ class MTimer extends Component {
             )}
           </CountdownCircleTimer>
         </View>
+        <AButton
+          text="Parar"
+          color="black"
+          backgroundColor="white"
+          onPress={ () => this.openQuitModal() }
+        />
       </View>
     )
   }

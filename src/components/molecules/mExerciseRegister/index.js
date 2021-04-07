@@ -110,6 +110,8 @@ class MExerciseRegister extends Component {
           <AButton
             style={ styles.mButton }
             text="Iniciar"
+            backgroundColor="#F78E00"
+            color="white"
             onPress={ () => this.doRedirect() }
           />
         </View>
