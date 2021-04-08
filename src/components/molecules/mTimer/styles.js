@@ -30,17 +30,14 @@ const styles = StyleSheet.create({
     borderRadius: 1000,
     padding: -100
   },
-  topText: {
-    fontSize: 16,
-    color: '#787878'
-  },
   remainingTime: {
     fontSize: 48,
     fontWeight: 'bold',
     color: '#787878'
   },
-  bottomText: {
-    fontSize: 24,
+  secondsText: {
+    fontSize: 16,
+    fontWeight: 'bold',
     color: '#787878'
   }
 })

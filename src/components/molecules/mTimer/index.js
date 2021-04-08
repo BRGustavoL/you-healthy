@@ -12,7 +12,9 @@ import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
 
 class MTimer extends Component {
+  
   render() {
+    console.log(this.props)
     return (
       <View style={ styles.mTimer }>
         <ATitle
@@ -35,16 +37,12 @@ class MTimer extends Component {
             {({ remainingTime, animatedColor }) => (
               <View style={ styles.insideCircle }>
                 <Animated.Text
-                  style={ styles.topText }>
-                  Boora!
-                </Animated.Text>
-                <Animated.Text
                   style={ styles.remainingTime }>
                   { remainingTime }
                 </Animated.Text>
                 <Animated.Text
-                  style={ styles.bottomText }>
-                  Just Do It!
+                  style={ styles.secondsText }>
+                  segundos
                 </Animated.Text>
               </View>
             )}

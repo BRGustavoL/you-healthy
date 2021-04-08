@@ -11,6 +11,12 @@ import styles from './styles'
 class AModal extends Component {
   render() {
     const { isVisible, info, setModalVisibility } = this.props
+
+    const castDuration = (time) => {
+      let result = time / 60
+      return (result) > 1 ? `${result} minutos` : `${result} minuto`
+    }
+
     return (
       <View style={ styles.centeredView }>
         <Modal
@@ -24,7 +30,7 @@ class AModal extends Component {
             <View style={ styles.modalView }>
               <Text style={ styles.title }>{ info.title }</Text>
               <Text style={ styles.description }>{ info.description }</Text>
-              <Text style={ styles.time }>Duração: { info.duration }</Text>
+              <Text style={ styles.time }>Duração: { castDuration(info.duration) }</Text>
               <TouchableOpacity
                 style={ styles.closeButton }
                 onPress={() => setModalVisibility(false) }>

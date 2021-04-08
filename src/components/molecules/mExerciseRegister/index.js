@@ -45,21 +45,18 @@ class MExerciseRegister extends Component {
     super(props)
 
     this.state = {
-      selectedItem: null
+      selectedItem: null,
+      selectedId: false
     }
   }
 
   doRedirect = () => {
-    this.props.setTimer({
-      name: 'Polichinelos',
-      duration: 30
-    })
     this.props.navigation.navigate('Timer')
   }
 
   render() {
     const columns = 2
-    const { setModalVisibility, setModalInfo } = this.props
+    const { setModalVisibility, setModalInfo, setTimer } = this.props
 
     setModal = (item) => {
       setModalVisibility(true)
@@ -70,8 +67,21 @@ class MExerciseRegister extends Component {
       })
     }
 
-    setExercise = (id) => {
-      this.setState({ selectedItem: id })
+    setExercise = (item) => {
+      this.setState({ selectedId: item.id })
+      setTimer({
+        name: item.title,
+        duration: item.duration
+      })
+    }
+
+    const castDuration = (time) => {
+      let result = time / 60
+      return (result) > 1 ? `${result} minutos` : `${result} minuto`
+    }
+
+    const returnIsDisabled = (id) => {
+      return id ? false : true
     }
 
     return (
@@ -89,17 +99,17 @@ class MExerciseRegister extends Component {
               numColumns={ columns }
               renderItem={({ item }) => {
                 return (
-                  <View style={ item.id === this.state.selectedId ? styles.mItemSelected : styles.mItem }>
+                  <View
+                    style={ item.id === this.state.selectedId ? styles.mItemSelected : styles.mItem }>
                     <TouchableOpacity
                       style={ styles.mText }
-                      onPress={ () => setExercise(item.id) }
+                      onPress={ () => setExercise(item) }
                       onLongPress={ () => setModal(item) }
                     >
                       { returnSVG(item) }
                     </TouchableOpacity>
                     <Text style={ styles.mExeType }>{ item.title }</Text>
-                    <Text style={ styles.mExeTime }>{ item.duration }</Text>
-                    <Text style={ styles.mExeTime }>{ this.state.selectedId }</Text>
+                    <Text style={ styles.mExeTime }>{ castDuration(item.duration) }</Text>
                   </View>
                 )
               }}
@@ -107,15 +117,18 @@ class MExerciseRegister extends Component {
           </View>
         </View>
         <View style={ styles.mFormActionButtons }>
-          {/* <AButton
+          <AButton
             style={ styles.mLink }
-            label="Agora não"
-          /> */}
+            text="Agora não"
+            type="link"
+          />
           <AButton
             style={ styles.mButton }
             text="Iniciar"
             backgroundColor="#F78E00"
             color="white"
+            type="button"
+            isDisabled={ returnIsDisabled(this.state.selectedId) }
             onPress={ () => this.doRedirect() }
           />
         </View>
@@ -127,7 +140,8 @@ class MExerciseRegister extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility, setModalInfo, setTimer }, dispatch)
 const mapStateToProps = store => ({
   isVisible: store.modalState.isVisible,
-  info: store.modalState.info
+  info: store.modalState.info,
+  exercise: store.timerState.info
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MExerciseRegister)

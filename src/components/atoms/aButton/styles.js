@@ -25,7 +25,22 @@ const styles = StyleSheet.create({
   labelLink: {
     color: '#949494',
     fontSize: 18,
-  }
+  },
+  buttonDisabled: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ebebeb',
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 10,
+    paddingTop: 10,
+    borderRadius: 30
+  },
+  labelButtonDisabled: {
+    color: '#bababa',
+    fontSize: 18,
+  },
 })
 
 export default styles

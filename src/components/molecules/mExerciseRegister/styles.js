@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 20,
     borderRadius: 20,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#F78E00',
   },
   mText: {
@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     color: '#737373'
   },
   mExeTime: {
-    fontSize: 10
+    fontSize: 10,
+    color: '#737373'
   }
 })
 
