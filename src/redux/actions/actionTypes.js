@@ -1,2 +1,3 @@
 export const SET_MODAL_VISIBILITY = 'SET_MODAL_VISIBILITY'
 export const SET_MODAL_INFO = 'SET_MODAL_INFO'
+export const SET_TIMER = 'SET_TIMER'

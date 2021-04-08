@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, FlatList, TouchableOpacity, Text } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { setModalVisibility, setModalInfo } from '../../../redux/actions/index.js'
+import { setModalVisibility, setModalInfo, setTimer } from '../../../redux/actions/index.js'
 
 import SVGAgachamento from '../../../../assets/icons/agachamento.svg'
 import SVGAlongamento from '../../../../assets/icons/alongamento.svg'
@@ -50,6 +50,10 @@ class MExerciseRegister extends Component {
   }
 
   doRedirect = () => {
+    this.props.setTimer({
+      name: 'Polichinelos',
+      duration: 30
+    })
     this.props.navigation.navigate('Timer')
   }
 
@@ -119,7 +123,8 @@ class MExerciseRegister extends Component {
     )
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility, setModalInfo }, dispatch)
+
+const mapDispatchToProps = dispatch => bindActionCreators({ setModalVisibility, setModalInfo, setTimer }, dispatch)
 const mapStateToProps = store => ({
   isVisible: store.modalState.isVisible,
   info: store.modalState.info

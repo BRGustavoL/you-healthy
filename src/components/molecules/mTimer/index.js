@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { View, Animated } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { setTimer } from '../../../redux/actions/index.js'
+
 import styles from './styles.js'
 
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
@@ -13,7 +17,7 @@ class MTimer extends Component {
       <View style={ styles.mTimer }>
         <ATitle
           style={ styles.mTitle }
-          title="Polichinelos"
+          title={ this.props.exercise.name }
         />
 
         <View style={ styles.container }>
@@ -22,13 +26,8 @@ class MTimer extends Component {
             trailStrokeWidth={ 8 }
             strokeWidth={ 10 }
             isPlaying
-            duration={ this.props.duration }
-            colors="white"
-            // colors={[
-            //   ['#00CC66', 0.6],
-            //   ['#0D7BFF', 0.3],
-            //   ['#FF2D0D', 0.2],
-            // ]}
+            duration={ this.props.exercise.duration }
+            colors="#fff"
             onComplete={() => {
               return [true, 0]
             }}
@@ -55,11 +54,16 @@ class MTimer extends Component {
           text="Parar"
           color="black"
           backgroundColor="white"
-          onPress={ () => this.openQuitModal() }
+          onPress={ () => console.log(this.props.exercise) }
         />
       </View>
     )
   }
 }
 
-export default MTimer
+const mapDispatchToProps = dispatch => bindActionCreators({ setTimer }, dispatch)
+const mapStateToProps = store => ({
+  exercise: store.timerState.exercise
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MTimer)
