@@ -12,9 +12,7 @@ import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
 
 class MTimer extends Component {
-  
   render() {
-    console.log(this.props)
     return (
       <View style={ styles.mTimer }>
         <ATitle
