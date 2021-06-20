@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Dimensions } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
+import MHome from './src/components/molecules/mHome/index.js'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator  } from '@react-navigation/drawer'
 import { Store } from './src/redux/index'
 import { Provider } from 'react-redux'
 
@@ -16,8 +18,17 @@ const config = {
     mass: 3,
     overshootClamping: true,
     restDisplacementThreshold: 0.01,
-    restSpeedThreshold: 0.01,
-  },
+    restSpeedThreshold: 0.01
+  }
+}
+
+const Home = (props) => {
+  return (
+    <View style={ styles.container }>
+      <StatusBar style="auto" />
+      <MHome navigation={ props.navigation } />
+    </View>
+  )
 }
 
 const ExerciseRegister = (props) => {
@@ -39,13 +50,40 @@ const Timer = (props) => {
 }
 
 const Stack = createStackNavigator()
+const Drawer = createDrawerNavigator()
 
 class App extends Component {
   render () {
     return (
       <Provider store={ Store }>
         <NavigationContainer>
-          <Stack.Navigator
+          <Drawer.Navigator initialRouteName="ExerciseRegister">
+            <Drawer.Screen name="Visão Geral" component={Home}
+              options={{
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+            <Drawer.Screen name="Meus Exercícios" component={ExerciseRegister}
+              options={{
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+            <Drawer.Screen name="Temporizador" component={Timer}
+              options={{
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+          </Drawer.Navigator>
+          {/* <Stack.Navigator
             screenOptions={{
               headerShown: false,
               headerTintColor: 'white',
@@ -72,7 +110,7 @@ class App extends Component {
                 }
               }}
             />
-          </Stack.Navigator>
+          </Stack.Navigator> */}
         </NavigationContainer>
       </Provider>
     )

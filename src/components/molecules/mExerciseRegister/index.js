@@ -16,6 +16,8 @@ import styles from './styles'
 
 import { exerciseInfo } from '../../../helpers/mock.js'
 
+import { fire } from '../../../firebase/config.js'
+
 function createRows(data, columns) {
   const rows = Math.floor(data.length / columns)
   let lastRowElements = data.length - rows * columns
@@ -84,6 +86,13 @@ class MExerciseRegister extends Component {
       return id ? false : true
     }
 
+    const exeRef = fire.firestore().collection('exercises')
+    const data = {
+      nome: 'um',
+      sobrenome: 2,
+      tres: 'quatro'
+    }
+
     return (
       <View style={ styles.exerciseRegister }>
         <View style={ styles.mForm }>
@@ -121,6 +130,7 @@ class MExerciseRegister extends Component {
             style={ styles.mLink }
             text="Agora não"
             type="link"
+            onPress={ () => exeRef.add(data) }
           />
           <AButton
             style={ styles.mButton }
