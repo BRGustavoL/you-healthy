@@ -33,7 +33,7 @@ export default class MExerciseCompleted extends Component {
           this.props.navigation.navigate('Visão Geral')
         }}>
           <Text style={ styles.successButton }>
-            PÁGINA INICIAL
+            Ir para página inicial
           </Text>
         </TouchableOpacity>
       </View>

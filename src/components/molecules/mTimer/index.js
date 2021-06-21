@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, Animated } from 'react-native'
+import { View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setTimer } from '../../../redux/actions/index.js'
 import styles from './styles.js'
 
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
+import CountDown from 'react-native-countdown-component'
 
 import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
@@ -24,36 +24,36 @@ class MTimer extends Component {
 
   render() {
     return (
-      <View style={ styles.mTimer }>
-        <ATitle
-          style={ styles.mTitle }
-          title={ this.props.exercise.name.toUpperCase() }
-        />
-
-        <CountdownCircleTimer
-          key={ this.state.timer }
-          style={ styles.mCountdownTimer }
-          isPlaying
-          duration={ this.state.timer }
-          colors="#3fbdf1"
-          onComplete={() => {
-            this.props.navigation.navigate('Exercício Completado', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
-          }}
-        >
-          {({ remainingTime, animatedColor }) => (
-            <Animated.Text style={{ color: animatedColor, fontSize: 40 }}>
-              { remainingTime }
-            </Animated.Text>
-          )}
-        </CountdownCircleTimer>
-
-        <AButton
-          text="VOLTAR"
-          color="#3fbdf1"
-          onPress={ () => {
-            this.props.navigation.goBack()
-          }}
-        />
+      <View style={ styles.container }>
+        <View style={ styles.content }>
+          <ATitle
+            title={ this.props.exercise.name }
+          />
+          <View style={ styles.countdown }>
+            <CountDown
+              key={ this.state.timer }
+              until={ 2 }
+              onFinish={() => {
+                this.props.navigation.navigate('Exercício Completado', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
+              }}
+              digitStyle={{ backgroundColor: 'black' }}
+              digitTxtStyle={{ color: 'white' }}
+              size={60}
+              timeToShow={['M', 'S']}
+              timeLabels={{m: 'Minutos', s: 'Segundos'}}
+              timeLabelStyle={{ color: 'black', fontSize: 18 }}
+              showSeparator
+            />
+          </View>
+        </View>
+        <View style={ styles.backButton }>
+          <AButton
+            label="Voltar"
+            onPress={ () => {
+              this.props.navigation.goBack()
+            }}
+          />
+        </View>
       </View>
     )
   }

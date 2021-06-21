@@ -1,30 +1,34 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  exerciseRegister: {
+  container: {
     display: 'flex',
-    justifyContent: 'space-between',
     height: '100%',
     paddingBottom: 64,
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 64
+    paddingTop: 34,
   },
-  mForm: {},
+  mCardGrid: {
+    marginTop: 24,
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    height: '100%'
+  },
   choose: {
     color: '#3fbdf1',
     fontSize: 20,
     fontWeight: 'bold'
   },
-  mButton: {},
-  mLink: {},
   mTitle: {
     marginBottom: 30
   },
   mFormActionButtons: {
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   mItem: {
     alignItems: 'center',
@@ -34,7 +38,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     borderColor: '#dbdbdb',
-    borderWidth: 1
+    borderWidth: 1,
+    height: 200
   },
   mItemSelected: {
     alignItems: 'center',
@@ -51,11 +56,12 @@ const styles = StyleSheet.create({
     color: '#333333'
   },
   mExeType: {
+    fontSize: 16,
     marginTop: 4,
     color: '#737373'
   },
   mExeTime: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#737373'
   }
 })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image, LogBox } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../../firebase/config.js'
+import ATitle from '../../atoms/aTitle/index.js'
 
 LogBox.ignoreAllLogs()
 
@@ -34,6 +35,9 @@ export default class Home extends Component {
     this.fetchData()
     return (
       <View style={ styles.home }>
+        <ATitle
+          title="Visão Geral"
+        />
         <View style={ styles.exercisesCard }>
           <View style={ styles.exercisesCardTop }>
             <View>

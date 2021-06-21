@@ -7,7 +7,11 @@ const styles = StyleSheet.create({
     paddingBottom: 64,
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 64,
+    paddingTop: 34,
+  },
+  exerciseFlatList: {
+    height: '90%',
+    marginBottom: 4,
   },
   tagItem: {
     width: 10,
@@ -31,7 +35,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
-    // borderBottomColor: '#c7c7c7',
   },
   listExercise: {
     fontSize: 15,
@@ -54,6 +57,49 @@ const styles = StyleSheet.create({
   },
   listFinishedAtValue: {
     color: 'gray',
+  },
+  textContent: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 34
+  },
+  tiredImage: {
+    width: 320,
+    height: 320,
+    marginBottom: 40
+  },
+  text: {
+    color: 'gray',
+    fontSize: 20,
+    paddingLeft: 11,
+    fontWeight: '400',
+    marginTop: 10,
+    textAlign: 'center',
+    lineHeight: 28
+  },
+  redirectButton: {
+    width: '100%',
+    color: '#3fbdf1',
+    fontSize: 24,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  containerNoContent: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 64,
+    paddingTop: 34
+  },
+  newExerciseButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '10%',
   }
 })
 

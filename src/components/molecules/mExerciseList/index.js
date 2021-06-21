@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import styles from './styles.js'
 
+import ATitle from '../../atoms/aTitle/index.js'
 export default class MExerciseList extends Component {
   constructor (props) {
     super(props)
@@ -64,21 +65,51 @@ export default class MExerciseList extends Component {
         finishedAt={ item.finishedAt }
       />
     )
-    return (
-      <View style={ styles.container }>
-        <TouchableOpacity onPress={ () => this.props.navigation.navigate('Escolha um exercício') }>
-          <Text>
-            Fazer exercício
-          </Text>
-        </TouchableOpacity>
-        <View style={ styles.mCardGrid }>
-          <FlatList
-            data={ this.props.route.params.exercises }
-            renderItem={ renderItem }
-            keyExtractor={ item => item.id }
+    if (this.props.route.params.exercises.length > 0) {
+      return (
+        <View style={ styles.container }>
+          <ATitle
+            title="Últimos exercícios"
           />
+          <View style={ styles.exerciseFlatList }>
+            <FlatList
+              data={ this.props.route.params.exercises }
+              renderItem={ renderItem }
+              keyExtractor={ item => item.id }
+            />
+          </View>
+          <TouchableOpacity
+            style={ styles.newExerciseButton }
+            onPress={ () => this.props.navigation.navigate('Escolha um exercício') }>
+            <Text style={ styles.redirectButton }>
+              Fazer novo exercício
+            </Text>
+          </TouchableOpacity>
         </View>
-      </View>
-    )
+      )
+    } else {
+      return (
+        <View style={ styles.containerNoContent }>
+          <View style={ styles.textContent }>
+            <Image
+              style={ styles.tiredImage }
+              source={ require('../../../../assets/icons/tired.png') }
+            />
+            <Text style={{ fontSize: 20, letterSpacing: 2, fontWeight: 'bold', textAlign: 'center' }}>
+              NENHUM EXERCÍCIO ENCONTRADO
+            </Text>
+            <Text style={ styles.text }>
+              Que tal fazer um?
+            </Text>
+          </View>
+          <TouchableOpacity onPress={ () => this.props.navigation.navigate('Escolha um exercício')}>
+            <Text style={ styles.redirectButton }>
+              Fazer agora
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+    
   }
 }

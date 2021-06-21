@@ -3,7 +3,7 @@ export const exerciseInfo = [
     id: '1',
     title: 'Agachamento',
     description: 'É um exercício físico de força em que o praticante abaixa os quadris a partir de uma posição em pé e depois se levanta.',
-    duration: 2
+    duration: 60
   },
   {
     id: '2',

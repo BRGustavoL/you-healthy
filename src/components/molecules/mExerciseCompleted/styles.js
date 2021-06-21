@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 64,
-    paddingTop: 64
+    paddingTop: 34
   },
   textContent: {
     display: 'flex',
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 64
+    paddingTop: 34
   },
   successImage: {
     width: 320,

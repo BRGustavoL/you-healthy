@@ -9,6 +9,7 @@ import SVGAlongamento from '../../../../assets/icons/alongamento.svg'
 import SVGPolichinelo from '../../../../assets/icons/polichinelo.svg'
 import SVGPilates from '../../../../assets/icons/pilates.svg'
 
+import ATitle from '../../atoms/aTitle/index'
 import AButton from '../../atoms/aButton/index'
 import AModal from '../../atoms/aModal/index'
 import styles from './styles'
@@ -77,13 +78,11 @@ class MExerciseRegister extends Component {
     }
 
     return (
-      <View style={ styles.exerciseRegister }>
-        <View style={ styles.mForm }>
-          {/* <ATitle
-            style={ styles.mTitle }
+      <View style={ styles.container }>
+        <View style={ styles.content }>
+          <ATitle
             title="Escolha um exercício"
-          /> */}
-          <AModal />
+          />
           <View style={ styles.mCardGrid }>
             <FlatList
               data={ createRows(exerciseInfo, columns) }
@@ -97,7 +96,7 @@ class MExerciseRegister extends Component {
                       style={ styles.mText }
                       onPress={ () => setExercise(item) }
                       onLongPress={ () => setModal(item) }
-                    >
+                      >
                       { returnSVG(item) }
                     </TouchableOpacity>
                     <Text style={ styles.mExeType }>{ item.title }</Text>
@@ -107,13 +106,11 @@ class MExerciseRegister extends Component {
               }}
             />
           </View>
+          <AModal />
         </View>
         <View style={ styles.mFormActionButtons }>
           <AButton
-            style={ styles.mButton }
-            text="INICIAR"
-            color="#3fbdf1"
-            type="button"
+            label="Iniciar"
             isDisabled={ returnIsDisabled(this.state.selectedId) }
             onPress={ () => {
               this.setState({ selectedId: false })

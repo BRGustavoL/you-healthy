@@ -29,14 +29,14 @@ const styles = StyleSheet.create({
   description: {
     marginBottom: 30,
     color: 'gray',
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '400',
     letterSpacing: 1.4,
   },
   time: {
     marginBottom: 30,
     color: 'black',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '400',
     letterSpacing: 1.4,
   },

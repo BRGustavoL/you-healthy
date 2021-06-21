@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Store } from './src/redux/index'
 import { Provider } from 'react-redux'
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const config = {
   animation: 'spring',
@@ -24,46 +25,56 @@ const config = {
 }
 const Home = (props) => {
   return (
-    <View style={ styles.container }>
-      <StatusBar style="auto" />
-      <MHome navigation={ props.navigation } />
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MHome navigation={ props.navigation } />
+      </View>
+    </SafeAreaView>
   )
 }
 
 const ExerciseRegister = (props) => {
   return (
-    <View style={ styles.container }>
-      <StatusBar style="auto" />
-      <MExerciseRegister navigation={ props.navigation } />
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MExerciseRegister navigation={ props.navigation } />
+      </View>
+    </SafeAreaView>
   )
 }
 
 const Timer = (props) => {
   return (
-    <View style={ styles.container }>
-      <StatusBar style="auto" />
-      <MTimer navigation={ props.navigation } route={ props.route } />
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MTimer navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
   )
 }
 
 const ExerciseList = (props) => {
   return (
-    <View style={ styles.container }>
-      <StatusBar style="auto" />
-      <MExerciseList navigation={ props.navigation } route={ props.route } />
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MExerciseList navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
   )
 }
 
 const ExerciseCompleted = (props) => {
   return (
-    <View style={ styles.container }>
-      <StatusBar style="auto" />
-      <MExerciseCompleted navigation={ props.navigation } route={ props.route } />
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MExerciseCompleted navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
   )
 }
 
@@ -73,53 +84,55 @@ class App extends Component {
   render () {
     return (
       <Provider store={ Store }>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            <Stack.Screen name="Visão Geral" component={Home}
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-            <Stack.Screen name="Escolha um exercício" component={ExerciseRegister}
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-            <Stack.Screen name="Temporizador" component={Timer}
-              options={{
-                headerShown: false,
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-            <Stack.Screen name="Meus Exercícios" component={ExerciseList}
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-            <Stack.Screen name="Exercício Completado" component={ExerciseCompleted}
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+              headerShown: false,
+            }}>
+              <Stack.Screen name="Visão Geral" component={Home}
+                options={{
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <Stack.Screen name="Escolha um exercício" component={ExerciseRegister}
+                options={{
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <Stack.Screen name="Temporizador" component={Timer}
+                options={{
+                  headerShown: false,
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <Stack.Screen name="Meus Exercícios" component={ExerciseList}
+                options={{
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <Stack.Screen name="Exercício Completado" component={ExerciseCompleted}
+                options={{
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
       </Provider>
     )
   }
