@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   textStyle: {
-    color: '#24CBD4',
+    color: '#3fbdf1',
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 24

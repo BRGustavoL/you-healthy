@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   mTitle: {
-    color: '#24CBD4',
+    color: '#3fbdf1',
     textAlign: 'center',
     fontSize: 40,
     letterSpacing: 1.4

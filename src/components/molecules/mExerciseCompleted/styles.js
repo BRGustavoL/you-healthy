@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     paddingRight: 30
   },
   successImage: {
-    width: 240,
-    height: 240,
+    width: 320,
+    height: 200,
     marginBottom: 40
   },
   mTitle: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   successButton: {
     width: '100%',
-    color: '#24CBD4',
+    color: '#3fbdf1',
     fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',

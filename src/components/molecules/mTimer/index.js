@@ -37,9 +37,9 @@ class MTimer extends Component {
           style={ styles.mCountdownTimer }
           isPlaying
           duration={ this.state.timer }
-          colors="#24CBD4"
+          colors="#3fbdf1"
           onComplete={() => {
-            this.props.navigation.navigate('PARABÈNS', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
+            this.props.navigation.navigate('Exercício Completado', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
           }}
         >
           {({ remainingTime, animatedColor }) => (
@@ -51,7 +51,7 @@ class MTimer extends Component {
 
         <AButton
           text="VOLTAR"
-          color="#24CBD4"
+          color="#3fbdf1"
           onPress={ () => {
             this.props.navigation.goBack()
           }}

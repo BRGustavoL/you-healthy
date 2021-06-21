@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   mForm: {},
   choose: {
-    color: '#24CBD4',
+    color: '#3fbdf1',
     fontSize: 20,
     fontWeight: 'bold'
   },
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#24CBD4',
+    borderColor: '#3fbdf1',
   },
   mText: {
     height: 100,

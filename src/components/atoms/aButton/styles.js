@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#24CBD4',
+    color: '#3fbdf1',
   },
   labelButton: {
     color: '#FFF',

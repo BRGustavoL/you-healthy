@@ -10,7 +10,6 @@ import SVGPolichinelo from '../../../../assets/icons/polichinelo.svg'
 import SVGPilates from '../../../../assets/icons/pilates.svg'
 
 import AButton from '../../atoms/aButton/index'
-import ATitle from '../../atoms/aTitle/index'
 import AModal from '../../atoms/aModal/index'
 import styles from './styles'
 
@@ -113,7 +112,7 @@ class MExerciseRegister extends Component {
           <AButton
             style={ styles.mButton }
             text="INICIAR"
-            color="#24CBD4"
+            color="#3fbdf1"
             type="button"
             isDisabled={ returnIsDisabled(this.state.selectedId) }
             onPress={ () => {

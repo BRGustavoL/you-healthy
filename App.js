@@ -92,7 +92,7 @@ class App extends Component {
                 }
               }}
             />
-            <Stack.Screen name="PARABÈNS" component={ExerciseCompleted}
+            <Stack.Screen name="Exercício Completado" component={ExerciseCompleted}
               options={{
                 transitionSpec: {
                   open: config,
