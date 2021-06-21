@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Animated, Modal, Text, TouchableOpacity } from 'react-native'
+import { View, Animated, Modal, Text, LogBox } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setTimer } from '../../../redux/actions/index.js'
-
+import { firebase } from '../../../firebase/config.js'
 import styles from './styles.js'
 
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
@@ -11,77 +11,50 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
 
+LogBox.ignoreAllLogs()
 class MTimer extends Component {
   constructor (props) {
     super(props)
-
     this.state = {
-      isVisible: false,
-      isPlaying: true
+      timer: this.props.exercise.duration
     }
   }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ timer: newProps.exercise.duration })
+  }
+
   render() {
     return (
-      <View style={ this.state.isVisible ? styles.mTimerOutFocus : styles.mTimer }>
+      <View style={ styles.mTimer }>
         <ATitle
           style={ styles.mTitle }
-          title={ this.props.exercise.name }
+          title={ this.props.exercise.name.toUpperCase() }
         />
 
-        <View style={ styles.container }>
-          <CountdownCircleTimer
-            size={ 320 }
-            trailStrokeWidth={ 8 }
-            strokeWidth={ 10 }
-            isPlaying={ this.state.isPlaying }
-            duration={ this.props.exercise.duration }
-            colors="#fff"
-            onComplete={() => {
-              return [true, 0]
-            }}
-          >
-            {({ remainingTime, animatedColor }) => (
-              <View style={ styles.insideCircle }>
-                <Animated.Text
-                  style={ this.state.isPlaying ? styles.remainingTime : styles.stopedTime }>
-                  { this.state.isPlaying ? remainingTime : 'Pausado' }
-                </Animated.Text>
-                <Animated.Text
-                  style={ styles.secondsText }>
-                  { this.state.isPlaying ? 'segundos' : '' }
-                </Animated.Text>
-              </View>
-            )}
-          </CountdownCircleTimer>
-        </View>
-        <Modal
-          animationType="slide"
-          transparent={ true }
-          visible={ this.state.isVisible }
+        <CountdownCircleTimer
+          key={ this.state.timer }
+          style={ styles.mCountdownTimer }
+          isPlaying
+          duration={ this.state.timer }
+          colors="#24CBD4"
+          onComplete={() => {
+            this.props.navigation.navigate('PARABÈNS', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
+          }}
         >
-          <View style={ styles.centeredView }>
-            <View style={ styles.modalView }>
-              <Text style={ styles.question }>Quer mesmo parar?</Text>
-              <View style={ styles.actionButtons }>
-                <AButton
-                  text="Voltar"
-                  type="link"
-                  onPress={ () => this.setState({ isVisible: false, isPlaying: true }) }
-                />
-                <AButton
-                  text="Quero"
-                  color="white"
-                  backgroundColor="#F78E00"
-                />
-              </View>
-            </View>
-          </View>
-        </Modal>
+          {({ remainingTime, animatedColor }) => (
+            <Animated.Text style={{ color: animatedColor, fontSize: 40 }}>
+              { remainingTime }
+            </Animated.Text>
+          )}
+        </CountdownCircleTimer>
+
         <AButton
-          text="Parar"
-          color="black"
-          backgroundColor="white"
-          onPress={ () => this.setState({ isVisible: true, isPlaying: false }) }
+          text="VOLTAR"
+          color="#24CBD4"
+          onPress={ () => {
+            this.props.navigation.goBack()
+          }}
         />
       </View>
     )

@@ -1,4 +1,4 @@
-import * as fire from 'firebase'
+import * as firebase from 'firebase'
 import '@firebase/auth'
 import '@firebase/firestore'
 
@@ -11,8 +11,8 @@ const firebaseConfig = {
   appId: "1:988670427510:web:42a840da51d64249effa57"
 }
 
-if (!fire.apps.length) {
-  fire.initializeApp(firebaseConfig)
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
 }
 
-export { fire }
+export { firebase }

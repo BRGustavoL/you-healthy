@@ -11,16 +11,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F78E00',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
-    borderRadius: 30
+    color: '#24CBD4',
   },
   labelButton: {
     color: '#FFF',
-    fontSize: 18,
+    fontSize: 24,
+    fontWeight: 'bold',
+    letterSpacing: 1.4
   },
   labelLink: {
     color: '#949494',
@@ -30,16 +27,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ebebeb',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
-    borderRadius: 30
+    color: '#ebebeb',
   },
   labelButtonDisabled: {
     color: '#bababa',
-    fontSize: 18,
+    fontSize: 24,
+    letterSpacing: 1.4
   },
 })
 

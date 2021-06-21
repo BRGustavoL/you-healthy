@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
+import MExerciseCompleted from './src/components/molecules/mExerciseCompleted/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
 import MHome from './src/components/molecules/mHome/index.js'
 import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList  } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator  } from '@react-navigation/drawer'
 import { Store } from './src/redux/index'
 import { Provider } from 'react-redux'
 
@@ -21,7 +22,6 @@ const config = {
     restSpeedThreshold: 0.01
   }
 }
-
 const Home = (props) => {
   return (
     <View style={ styles.container }>
@@ -44,21 +44,30 @@ const Timer = (props) => {
   return (
     <View style={ styles.container }>
       <StatusBar style="auto" />
-      <MTimer navigation={ props.navigation } />
+      <MTimer navigation={ props.navigation } route={ props.route } />
     </View>
   )
 }
 
-const Stack = createStackNavigator()
+const ExerciseCompleted = (props) => {
+  return (
+    <View style={ styles.container }>
+      <StatusBar style="auto" />
+      <MExerciseCompleted navigation={ props.navigation } route={ props.route } />
+    </View>
+  )
+}
+
 const Drawer = createDrawerNavigator()
+const Stack = createStackNavigator()
 
 class App extends Component {
   render () {
     return (
       <Provider store={ Store }>
         <NavigationContainer>
-          <Drawer.Navigator initialRouteName="ExerciseRegister">
-            <Drawer.Screen name="Visão Geral" component={Home}
+          <Stack.Navigator>
+            <Stack.Screen name="Visão Geral" component={Home}
               options={{
                 transitionSpec: {
                   open: config,
@@ -66,7 +75,7 @@ class App extends Component {
                 }
               }}
             />
-            <Drawer.Screen name="Meus Exercícios" component={ExerciseRegister}
+            <Stack.Screen name="Meus Exercícios" component={ExerciseRegister}
               options={{
                 transitionSpec: {
                   open: config,
@@ -74,7 +83,16 @@ class App extends Component {
                 }
               }}
             />
-            <Drawer.Screen name="Temporizador" component={Timer}
+            <Stack.Screen name="Temporizador" component={Timer}
+              options={{
+                headerShown: false,
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+            <Stack.Screen name="PARABÈNS" component={ExerciseCompleted}
               options={{
                 transitionSpec: {
                   open: config,
@@ -82,35 +100,7 @@ class App extends Component {
                 }
               }}
             />
-          </Drawer.Navigator>
-          {/* <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-              headerTintColor: 'white',
-              headerStyle: { backgroundColor: '#01AA4F' },
-            }}
-          >
-            <Stack.Screen
-              name="ExerciseRegister"
-              component={ ExerciseRegister }
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-            <Stack.Screen
-              name="Timer"
-              component={ Timer }
-              options={{
-                transitionSpec: {
-                  open: config,
-                  close: config
-                }
-              }}
-            />
-          </Stack.Navigator> */}
+          </Stack.Navigator>
         </NavigationContainer>
       </Provider>
     )

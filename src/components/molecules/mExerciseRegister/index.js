@@ -15,9 +15,6 @@ import AModal from '../../atoms/aModal/index'
 import styles from './styles'
 
 import { exerciseInfo } from '../../../helpers/mock.js'
-
-import { fire } from '../../../firebase/config.js'
-
 function createRows(data, columns) {
   const rows = Math.floor(data.length / columns)
   let lastRowElements = data.length - rows * columns
@@ -41,26 +38,20 @@ returnSVG = (type) => {
       return ( <SVGPilates width="100" height="100" /> )
   }
 }
-
 class MExerciseRegister extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      selectedItem: null,
+      selectedItem: '',
       selectedId: false
     }
-  }
-
-  doRedirect = () => {
-    this.props.navigation.navigate('Timer')
   }
 
   render() {
     const columns = 2
     const { setModalVisibility, setModalInfo, setTimer } = this.props
-
-    setModal = (item) => {
+    const setModal = (item) => {
       setModalVisibility(true)
       setModalInfo({
         title: item.title,
@@ -69,7 +60,7 @@ class MExerciseRegister extends Component {
       })
     }
 
-    setExercise = (item) => {
+    const setExercise = (item) => {
       this.setState({ selectedId: item.id })
       setTimer({
         name: item.title,
@@ -86,20 +77,13 @@ class MExerciseRegister extends Component {
       return id ? false : true
     }
 
-    const exeRef = fire.firestore().collection('exercises')
-    const data = {
-      nome: 'um',
-      sobrenome: 2,
-      tres: 'quatro'
-    }
-
     return (
       <View style={ styles.exerciseRegister }>
         <View style={ styles.mForm }>
-          <ATitle
+          {/* <ATitle
             style={ styles.mTitle }
             title="Escolha um exercício"
-          />
+          /> */}
           <AModal />
           <View style={ styles.mCardGrid }>
             <FlatList
@@ -127,19 +111,15 @@ class MExerciseRegister extends Component {
         </View>
         <View style={ styles.mFormActionButtons }>
           <AButton
-            style={ styles.mLink }
-            text="Agora não"
-            type="link"
-            onPress={ () => exeRef.add(data) }
-          />
-          <AButton
             style={ styles.mButton }
-            text="Iniciar"
-            backgroundColor="#F78E00"
-            color="white"
+            text="INICIAR"
+            color="#24CBD4"
             type="button"
             isDisabled={ returnIsDisabled(this.state.selectedId) }
-            onPress={ () => this.doRedirect() }
+            onPress={ () => {
+              this.setState({ selectedId: false })
+              this.props.navigation.navigate('Temporizador')
+            }}
           />
         </View>
       </View>

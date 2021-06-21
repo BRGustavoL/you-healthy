@@ -8,9 +8,14 @@ const styles = StyleSheet.create({
     paddingBottom: 64,
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 64
+    paddingTop: 34
   },
   mForm: {},
+  choose: {
+    color: '#24CBD4',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
   mButton: {},
   mLink: {},
   mTitle: {
@@ -19,7 +24,7 @@ const styles = StyleSheet.create({
   mFormActionButtons: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'center'
   },
   mItem: {
     alignItems: 'center',
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#F78E00',
+    borderColor: '#24CBD4',
   },
   mText: {
     height: 100,

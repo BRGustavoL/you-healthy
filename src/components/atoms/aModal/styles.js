@@ -15,31 +15,35 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   textStyle: {
-    color: 'white',
+    color: '#24CBD4',
     fontWeight: 'bold',
     textAlign: 'center',
+    fontSize: 24
   },
   title: {
-    marginBottom: 15,
+    color: 'black',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 28,
+    marginBottom: 15,
   },
   description: {
-    marginBottom: 30
+    marginBottom: 30,
+    color: 'gray',
+    fontSize: 20,
+    fontWeight: '400',
+    letterSpacing: 1.4,
   },
   time: {
-    marginBottom: 30
+    marginBottom: 30,
+    color: 'black',
+    fontSize: 20,
+    fontWeight: '400',
+    letterSpacing: 1.4,
   },
   closeButton: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F78E00',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
-    borderRadius: 30
   }
 })
 
