@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     paddingBottom: 64,
     paddingLeft: 30,
     paddingRight: 30,
-    paddingTop: 34
+    paddingTop: 64
   },
   mForm: {},
   choose: {

@@ -3,10 +3,10 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
 import MExerciseCompleted from './src/components/molecules/mExerciseCompleted/index.js'
+import MExerciseList from './src/components/molecules/mExerciseList/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
 import MHome from './src/components/molecules/mHome/index.js'
 import { NavigationContainer } from '@react-navigation/native'
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList  } from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Store } from './src/redux/index'
 import { Provider } from 'react-redux'
@@ -49,6 +49,15 @@ const Timer = (props) => {
   )
 }
 
+const ExerciseList = (props) => {
+  return (
+    <View style={ styles.container }>
+      <StatusBar style="auto" />
+      <MExerciseList navigation={ props.navigation } route={ props.route } />
+    </View>
+  )
+}
+
 const ExerciseCompleted = (props) => {
   return (
     <View style={ styles.container }>
@@ -58,7 +67,6 @@ const ExerciseCompleted = (props) => {
   )
 }
 
-const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 
 class App extends Component {
@@ -66,7 +74,9 @@ class App extends Component {
     return (
       <Provider store={ Store }>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
             <Stack.Screen name="Visão Geral" component={Home}
               options={{
                 transitionSpec: {
@@ -75,7 +85,7 @@ class App extends Component {
                 }
               }}
             />
-            <Stack.Screen name="Meus Exercícios" component={ExerciseRegister}
+            <Stack.Screen name="Escolha um exercício" component={ExerciseRegister}
               options={{
                 transitionSpec: {
                   open: config,
@@ -86,6 +96,14 @@ class App extends Component {
             <Stack.Screen name="Temporizador" component={Timer}
               options={{
                 headerShown: false,
+                transitionSpec: {
+                  open: config,
+                  close: config
+                }
+              }}
+            />
+            <Stack.Screen name="Meus Exercícios" component={ExerciseList}
+              options={{
                 transitionSpec: {
                   open: config,
                   close: config

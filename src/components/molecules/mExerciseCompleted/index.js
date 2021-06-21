@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from './styles.js'
 import { firebase } from '../../../firebase/config.js'
-
 export default class MExerciseCompleted extends Component {
   constructor (props) {
     super(props)
@@ -26,9 +25,10 @@ export default class MExerciseCompleted extends Component {
         </View>
         <TouchableOpacity onPress={ () => {
           completedExerciesRef.add({
+            id: Date.now(),
             exercise: this.props.route.params.exerciseName,
-            duration: `${this.props.route.params.exerciseDuration * 60} minutos`,
-            finishedAt: new Date()
+            duration: `${this.props.route.params.exerciseDuration / 60} minutos`,
+            finishedAt: `${new Date().getDate()}/${(new Date().getMonth() + 1) < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}/${new Date().getFullYear()}`
           })
           this.props.navigation.navigate('Visão Geral')
         }}>

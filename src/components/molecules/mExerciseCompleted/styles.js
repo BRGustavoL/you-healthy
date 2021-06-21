@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 30,
-    paddingRight: 30
+    paddingRight: 30,
+    paddingTop: 64
   },
   successImage: {
     width: 320,

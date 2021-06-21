@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   exercisesCardBottomText: {
     letterSpacing: 1.4,
-    fontSize: 18,
+    fontSize: 16,
   },
   yogaImage: {
     width: 200,
@@ -51,17 +51,12 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   total: {
-    fontSize: 50,
+    fontSize: 60,
   },
   subTotal: {
     fontSize: 20,
     color: 'gray'
   },
-  underTotal: {
-    fontSize: 14,
-    opacity: 0.5,
-    color: 'gray'
-  }
 })
 
 export default styles

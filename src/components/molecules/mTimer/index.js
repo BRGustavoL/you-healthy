@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Animated, Modal, Text, LogBox } from 'react-native'
+import { View, Animated } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setTimer } from '../../../redux/actions/index.js'
-import { firebase } from '../../../firebase/config.js'
 import styles from './styles.js'
 
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
@@ -11,7 +10,6 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
 
-LogBox.ignoreAllLogs()
 class MTimer extends Component {
   constructor (props) {
     super(props)
