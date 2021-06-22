@@ -31,38 +31,54 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mItem: {
-    alignItems: 'center',
-    flexBasis: 0,
-    flexGrow: 1,
-    margin: 8,
-    padding: 20,
-    borderRadius: 20,
+    marginTop: 24,
+    marginLeft: 8,
+    marginRight: 8,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    borderRadius: 16,
     borderColor: '#dbdbdb',
     borderWidth: 1,
-    height: 200
+    display: 'flex',
+    height: 80,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   },
   mItemSelected: {
-    alignItems: 'center',
-    flexBasis: 0,
-    flexGrow: 1,
-    margin: 8,
-    padding: 20,
-    borderRadius: 20,
+    marginTop: 24,
+    marginLeft: 8,
+    marginRight: 8,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#3fbdf1',
+    height: 80,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    borderColor: 'black',
   },
   mText: {
     height: 100,
     color: '#333333'
   },
   mExeType: {
-    fontSize: 16,
-    marginTop: 4,
-    color: '#737373'
+    fontSize: 18,
+    letterSpacing: 1.4,
+    fontWeight: 'bold'
   },
   mExeTime: {
-    fontSize: 12,
-    color: '#737373'
+    marginTop: 5,
+    color: 'gray'
+  },
+  radioInfo: {
+    display: 'flex'
   }
 })
 

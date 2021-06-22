@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   exerciseFlatList: {
     height: '90%',
     marginBottom: 4,
+    overflow: 'hidden'
   },
   tagItem: {
     width: 10,

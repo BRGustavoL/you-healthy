@@ -19,7 +19,7 @@ export const exerciseInfo = [
   },
   {
     id: '4',
-    title: 'Pilates',
+    title: 'Burpes',
     description: 'É um método de exercícios desenvolvido por Joseph Pilates na década de 1920. A maioria dos exercícios são executados com a pessoa deitada. É atualmente uma técnica reconhecida para tratamento e prevenção de problemas na coluna vertebral.',
     duration: 240
   }

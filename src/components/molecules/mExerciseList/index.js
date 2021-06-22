@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native'
 import styles from './styles.js'
 
 import ATitle from '../../atoms/aTitle/index.js'
@@ -65,6 +65,19 @@ export default class MExerciseList extends Component {
         finishedAt={ item.finishedAt }
       />
     )
+
+    const sortItems = (items) => {
+      items.sort((a, b) => {
+        if (a.id < b.id) {
+          return 1
+        }
+        if (a.id > b.id) {
+          return -1
+        }
+        return 0
+      })
+      return items
+    }
     if (this.props.route.params.exercises.length > 0) {
       return (
         <View style={ styles.container }>
@@ -72,11 +85,16 @@ export default class MExerciseList extends Component {
             title="Últimos exercícios"
           />
           <View style={ styles.exerciseFlatList }>
-            <FlatList
-              data={ this.props.route.params.exercises }
-              renderItem={ renderItem }
-              keyExtractor={ item => item.id }
-            />
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+            >
+              <FlatList
+                data={ sortItems(this.props.route.params.exercises) }
+                renderItem={ renderItem }
+                keyExtractor={ item => item.id }
+              />
+            </ScrollView>
           </View>
           <TouchableOpacity
             style={ styles.newExerciseButton }

@@ -49,7 +49,7 @@ class MExerciseRegister extends Component {
   }
 
   render() {
-    const columns = 2
+    const columns = 1
     const { setModalVisibility, setModalInfo, setTimer } = this.props
     const setModal = (item) => {
       setModalVisibility(true)
@@ -90,18 +90,39 @@ class MExerciseRegister extends Component {
               numColumns={ columns }
               renderItem={({ item }) => {
                 return (
-                  <View
-                    style={ item.id === this.state.selectedId ? styles.mItemSelected : styles.mItem }>
-                    <TouchableOpacity
-                      style={ styles.mText }
-                      onPress={ () => setExercise(item) }
-                      onLongPress={ () => setModal(item) }
-                      >
-                      { returnSVG(item) }
-                    </TouchableOpacity>
-                    <Text style={ styles.mExeType }>{ item.title }</Text>
-                    <Text style={ styles.mExeTime }>{ castDuration(item.duration) }</Text>
-                  </View>
+                  <TouchableOpacity
+                    style={ item.id === this.state.selectedId ? styles.mItemSelected : styles.mItem }
+                    onPress={ () => setExercise(item) }
+                    onLongPress={ () => setModal(item) }
+                  >
+                    <View style={[{
+                      height: 24,
+                      width: 24,
+                      borderRadius: 12,
+                      borderWidth: 2,
+                      borderColor: '#000',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: 14
+                    }, this.props.style]}>
+                      {
+                        item.id === this.state.selectedId ?
+                          <View style={{
+                            height: 24,
+                            width: 24,
+                            borderRadius: 12,
+                            backgroundColor: '#000',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}/>
+                          : null
+                      }
+                    </View>
+                    <View style={ styles.radioInfo }>
+                      <Text style={ styles.mExeType }>{ item.title }</Text>
+                      <Text style={ styles.mExeTime }>Duração: { castDuration(item.duration) }</Text>
+                    </View>
+                  </TouchableOpacity>
                 )
               }}
             />
