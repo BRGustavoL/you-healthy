@@ -27,7 +27,7 @@ export default class MExerciseCompleted extends Component {
           completedExerciesRef.add({
             id: Date.now(),
             exercise: this.props.route.params.exerciseName,
-            duration: `${this.props.route.params.exerciseDuration / 60} minutos`,
+            duration: (this.props.route.params.exerciseDuration / 60) > 1 ? `${this.props.route.params.exerciseDuration / 60} minutos` : `${this.props.route.params.exerciseDuration / 60} minuto`,
             finishedAt: `${new Date().getDate()}/${(new Date().getMonth() + 1) < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}/${new Date().getFullYear()}`
           })
           this.props.navigation.navigate('Visão Geral')

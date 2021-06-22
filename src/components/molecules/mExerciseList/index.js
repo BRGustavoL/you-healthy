@@ -35,7 +35,7 @@ export default class MExerciseList extends Component {
           backgroundColor: '#e95670',
           ...pattern
         }
-      } else if (exercise === 'Pilates') {
+      } else if (exercise === 'Burpes') {
         result = {
           backgroundColor: '#ff9e64',
           ...pattern
@@ -114,7 +114,7 @@ export default class MExerciseList extends Component {
               source={ require('../../../../assets/icons/tired.png') }
             />
             <Text style={{ fontSize: 20, letterSpacing: 2, fontWeight: 'bold', textAlign: 'center' }}>
-              NENHUM EXERCÍCIO ENCONTRADO
+              NÃO ACHAMOS NENHUM EXERCÍCIO
             </Text>
             <Text style={ styles.text }>
               Que tal fazer um?
