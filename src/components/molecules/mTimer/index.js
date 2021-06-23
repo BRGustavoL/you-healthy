@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setTimer } from '../../../redux/actions/index.js'
 import styles from './styles.js'
-
 import CountDown from 'react-native-countdown-component'
 
 import ATitle from '../../atoms/aTitle/index.js'

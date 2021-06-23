@@ -9,9 +9,6 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     paddingTop: 34,
   },
-  mCardGrid: {
-    marginTop: 24,
-  },
   content: {
     display: 'flex',
     justifyContent: 'flex-start',

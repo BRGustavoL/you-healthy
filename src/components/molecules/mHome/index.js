@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Image, LogBox, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, Image, LogBox, ActivityIndicator, Platform } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../../firebase/config.js'
 import ATitle from '../../atoms/aTitle/index.js'
+import * as Calendar from 'expo-calendar'
 
 LogBox.ignoreAllLogs()
 
@@ -28,8 +29,16 @@ export default class Home extends Component {
     this.setState({ exercises: array, total: array.length, isLoading: false })
   }
 
+  doCalendar = async () => {
+    const { status } = await Calendar.requestCalendarPermissionsAsync()
+    if (status === 'granted') {
+      await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
+    }
+  }
+
   componentDidMount () {
     this.fetchData()
+    this.doCalendar()
   }
 
   minutesTotalizer = () => {
@@ -43,6 +52,44 @@ export default class Home extends Component {
       minutes: result,
       hours: hours.toFixed(2)
     }
+  }
+
+  getDefaultCalendarSource = async () => {
+    const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
+    const defaultCalendars = calendars.filter(each => each.source.name === 'Default')
+    return defaultCalendars[0].source
+  }
+  
+  createCalendar = async () => {
+    const defaultCalendarSource =
+      Platform.OS === 'ios'
+        ? await getDefaultCalendarSource()
+        : { isLocalAccount: true, name: 'Expo Calendar' }
+    const newCalendarID = await Calendar.createCalendarAsync({
+      title: 'Expo Calendar',
+      color: 'blue',
+      entityType: Calendar.EntityTypes.EVENT,
+      sourceId: defaultCalendarSource.id,
+      source: defaultCalendarSource,
+      name: 'internalCalendarName',
+      ownerAccount: 'personal',
+      accessLevel: Calendar.CalendarAccessLevel.OWNER
+    })
+    const newEventCalendar = await Calendar.createEventAsync(newCalendarID, {
+      title: 'TESTE CALENDÁRIO',
+      startDate: new Date(2021, 6-1, 22, 20, 11),
+      endDate: new Date(2021, 6-1, 22, 20, 12),
+      timeZone: 'America/Sao_Paulo',
+      alarms: [
+        {
+          relativeOffset: -1,
+          method: Calendar.AlarmMethod.ALERT
+        }
+      ],
+      recurrenceRule: {
+        frequency: 'daily'
+      }
+    })
   }
 
   render() {
@@ -64,7 +111,7 @@ export default class Home extends Component {
             <View style={ styles.exercisesCardTop }>
               <View>
                 <Text style={ styles.subTotal }>
-                  Total:
+                  Total
                 </Text>
                 <Text style={[ styles.total, (this.state.total >= 1000) ? { fontSize: 40 } : { fontSize: 60 } ]} key={ this.state.total }>
                   { this.state.total }
@@ -76,10 +123,13 @@ export default class Home extends Component {
               />
             </View>
             <View style={ styles.exercisesCardBottom }>
-              <TouchableOpacity onPress={ () => this.props.navigation.navigate('Meus Exercícios', {
-                exercises: this.state.exercises,
-                total: this.state.total
-              }) }>
+              <TouchableOpacity onPress={ () => {
+                // this.createCalendar()
+                this.props.navigation.navigate('Meus Exercícios', {
+                  exercises: this.state.exercises,
+                  total: this.state.total
+                })
+              } }>
                 <Text style={ styles.exercisesCardBottomText }>
                   Ver meus exercícios
                 </Text>
@@ -91,15 +141,45 @@ export default class Home extends Component {
               <View style={ styles.leftTag }></View>
               <View>
                 <Text style={ styles.label }>Total em minutos:</Text>
-                <Text style={ styles.value }>{ this.minutesTotalizer().minutes }</Text>
+                <Text style={ styles.value }>{ this.minutesTotalizer().minutes } <Text style={ styles.smallText }>min</Text></Text>
               </View>
             </View>
             <View style={ styles.right }>
               <View style={ styles.rightTag }></View>
               <View>
                 <Text style={ styles.label }>Total em horas:</Text>
-                <Text style={ styles.value }>{ this.minutesTotalizer().hours }</Text>
+                <Text style={ styles.value }>{ this.minutesTotalizer().hours } <Text style={ styles.smallText }>hr</Text></Text>
               </View>
+            </View>
+          </View>
+          <View style={ styles.calendarCard }>
+            <View style={ styles.calendarCardContent }>
+              <View style={ styles.calendarInfo }>
+                <Text style={ styles.calendarTitle }>Próximo Horário</Text>
+                <View style={ styles.calendarPeriodContent }>
+                  <View style={ styles.calendarTag }></View>
+                  <View style={ styles.calendarPeriodInfo }>
+                    <Text>Dia: 22/06/2021</Text>
+                    <Text>Hora: 12:00</Text>
+                  </View>
+                </View>
+              </View>
+              <Image
+                style={ styles.calendarImage }
+                source={ require('../../../../assets/icons/calendar.png') }
+              />
+            </View>
+            <View style={ styles.calendarCardButton }>
+              <TouchableOpacity onPress={ () => {
+                this.props.navigation.navigate('Meus Exercícios', {
+                  exercises: this.state.exercises,
+                  total: this.state.total
+                })
+              } }>
+                <Text style={ styles.calendarCardBottomText }>
+                  Ver meus horários
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

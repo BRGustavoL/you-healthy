@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0.5 },
     elevation: 3,
     backgroundColor: 'white',
-    marginTop: 40
+    marginTop: 24
   },
   exercisesCardTop: {
     width: '100%',
@@ -67,6 +67,11 @@ const styles = StyleSheet.create({
   },
   subTotal: {
     fontSize: 20,
+    color: 'gray',
+    letterSpacing: 1.4,
+  },
+  smallText: {
+    fontSize: 24,
     color: 'gray'
   },
 
@@ -128,6 +133,72 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff9e64',
     marginRight: 10,
   },
+
+  // Calendar Card
+  calendarCard: {
+    width: '100%',
+    height: 200,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0.5 },
+    elevation: 3,
+    backgroundColor: 'white',
+    marginTop: 24,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  calendarCardContent: {
+    width: '100%',
+    height: '75%',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  calendarCardButton: {
+    width: '100%',
+    height: '25%',
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    paddingLeft: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    borderTopWidth: 0.2,
+    borderTopColor: 'gray',
+    zIndex: -1
+  },
+  calendarInfo: {
+    width: '50%',
+    padding: 20,
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  calendarTitle: {
+    letterSpacing: 1.4,
+    fontSize: 20,
+    color: 'gray'
+  },
+  calendarImage: {
+    width: '50%',
+    height: 200,
+  },
+  calendarCardBottomText: {
+    letterSpacing: 1.4,
+    fontSize: 16,
+  },
+  
+  calendarPeriodContent: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  calendarTag: {
+    width: 8,
+    height: '100%',
+    borderRadius: 10,
+    backgroundColor: '#F06D7C',
+    marginRight: 10,
+  }
 })
 
 export default styles
