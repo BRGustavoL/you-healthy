@@ -14,7 +14,9 @@ export default class Home extends Component {
     this.state = {
       exercises: [],
       total: 0,
-      isLoading: true
+      isLoading: true,
+      myCalendar: [],
+      nextExercise: ''
     }
   }
 
@@ -54,19 +56,13 @@ export default class Home extends Component {
     }
   }
 
-  getDefaultCalendarSource = async () => {
-    const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
-    const defaultCalendars = calendars.filter(each => each.source.name === 'Default')
-    return defaultCalendars[0].source
-  }
-  
   createCalendar = async () => {
     const defaultCalendarSource =
-      Platform.OS === 'ios'
-        ? await getDefaultCalendarSource()
-        : { isLocalAccount: true, name: 'Expo Calendar' }
+    Platform.OS === 'ios'
+      ? await getDefaultCalendarSource()
+      : { isLocalAccount: true, name: 'Expo Calendar' }
     const newCalendarID = await Calendar.createCalendarAsync({
-      title: 'Expo Calendar',
+      title: 'You Healthy',
       color: 'blue',
       entityType: Calendar.EntityTypes.EVENT,
       sourceId: defaultCalendarSource.id,
@@ -75,20 +71,17 @@ export default class Home extends Component {
       ownerAccount: 'personal',
       accessLevel: Calendar.CalendarAccessLevel.OWNER
     })
-    const newEventCalendar = await Calendar.createEventAsync(newCalendarID, {
-      title: 'TESTE CALENDÁRIO',
-      startDate: new Date(2021, 6-1, 22, 20, 11),
-      endDate: new Date(2021, 6-1, 22, 20, 12),
+    await Calendar.createEventAsync(newCalendarID, {
+      title: 'Exercício Agendado',
+      startDate: new Date(2021, 6-1, 25, 13, 25),
+      endDate: new Date(2021, 6-1, 25, 13, 30),
       timeZone: 'America/Sao_Paulo',
       alarms: [
         {
           relativeOffset: -1,
           method: Calendar.AlarmMethod.ALERT
         }
-      ],
-      recurrenceRule: {
-        frequency: 'daily'
-      }
+      ]
     })
   }
 
@@ -124,7 +117,6 @@ export default class Home extends Component {
             </View>
             <View style={ styles.exercisesCardBottom }>
               <TouchableOpacity onPress={ () => {
-                // this.createCalendar()
                 this.props.navigation.navigate('Meus Exercícios', {
                   exercises: this.state.exercises,
                   total: this.state.total
@@ -155,13 +147,12 @@ export default class Home extends Component {
           <View style={ styles.calendarCard }>
             <View style={ styles.calendarCardContent }>
               <View style={ styles.calendarInfo }>
-                <Text style={ styles.calendarTitle }>Próximo Horário</Text>
+                <Text style={ styles.calendarTitle }>Próximo Exercício</Text>
                 <View style={ styles.calendarPeriodContent }>
                   <View style={ styles.calendarTag }></View>
-                  <View style={ styles.calendarPeriodInfo }>
-                    <Text>Dia: 22/06/2021</Text>
-                    <Text>Hora: 12:00</Text>
-                  </View>
+                  {/* <View style={ styles.calendarPeriodInfo }>
+                    { this.returnNextExerciseComponent() }
+                  </View> */}
                 </View>
               </View>
               <Image
@@ -171,10 +162,12 @@ export default class Home extends Component {
             </View>
             <View style={ styles.calendarCardButton }>
               <TouchableOpacity onPress={ () => {
-                this.props.navigation.navigate('Meus Exercícios', {
-                  exercises: this.state.exercises,
-                  total: this.state.total
-                })
+                this.createCalendar()
+                console.log('teste')
+                // this.props.navigation.navigate('Meus Exercícios', {
+                //   exercises: this.state.exercises,
+                //   total: this.state.total
+                // })
               } }>
                 <Text style={ styles.calendarCardBottomText }>
                   Ver meus horários

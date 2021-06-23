@@ -128,6 +128,5 @@ export default class MExerciseList extends Component {
         </View>
       )
     }
-    
   }
 }
