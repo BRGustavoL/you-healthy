@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import styles from './styles.js'
 
 import ATitle from '../../atoms/aTitle/index.js'
@@ -85,16 +85,11 @@ export default class MExerciseList extends Component {
             title="Últimos exercícios"
           />
           <View style={ styles.exerciseFlatList }>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-            >
-              <FlatList
-                data={ sortItems(this.props.route.params.exercises) }
-                renderItem={ renderItem }
-                keyExtractor={ item => item.id }
-              />
-            </ScrollView>
+            <FlatList
+              data={ sortItems(this.props.route.params.exercises) }
+              renderItem={ renderItem }
+              keyExtractor={ item => item.id.toString() }
+            />
           </View>
           <TouchableOpacity
             style={ styles.newExerciseButton }

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
-import MExerciseCompleted from './src/components/molecules/mExerciseCompleted/index.js'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
 import MCalendarSchedule from './src/components/molecules/mCalendarSchedule/index.js'
-import MCalendarScheduleCompleted from './src/components/molecules/mCalendarScheduleCompleted/index.js'
 import ASuccessScreen from './src/components/atoms/aSuccessScreen/index.js'
 import MExerciseList from './src/components/molecules/mExerciseList/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
@@ -82,34 +80,12 @@ const ExerciseList = (props) => {
   )
 }
 
-const ExerciseCompleted = (props) => {
-  return (
-    <SafeAreaView style={{ backgroundColor: 'white' }}>
-      <View style={ styles.container }>
-        <StatusBar style="auto" />
-        <MExerciseCompleted navigation={ props.navigation } route={ props.route } />
-      </View>
-    </SafeAreaView>
-  )
-}
-
 const CalendarSchedule = (props) => {
   return (
     <SafeAreaView style={{ backgroundColor: 'white' }}>
       <View style={ styles.container }>
         <StatusBar style="auto" />
         <MCalendarSchedule navigation={ props.navigation } route={ props.route } />
-      </View>
-    </SafeAreaView>
-  )
-}
-
-const CalendarScheduleCompleted = (props) => {
-  return (
-    <SafeAreaView style={{ backgroundColor: 'white' }}>
-      <View style={ styles.container }>
-        <StatusBar style="auto" />
-        <MCalendarScheduleCompleted navigation={ props.navigation } route={ props.route } />
       </View>
     </SafeAreaView>
   )

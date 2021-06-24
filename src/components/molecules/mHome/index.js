@@ -109,9 +109,12 @@ export default class Home extends Component {
           <View style={ styles.calendarCard }>
             <View style={ styles.calendarCardContent }>
               <View style={ styles.calendarInfo }>
-                <Text style={ styles.calendarTitle }>Próximo Exercício</Text>
+                <Text style={ styles.calendarTitle }>Agenda de Exercícios</Text>
                 <View style={ styles.calendarPeriodContent }>
                   <View style={ styles.calendarTag }></View>
+                  <View style={ styles.calendarPeriodInfo }>
+                    <Text>Agende para quando quiser</Text>
+                  </View>
                 </View>
               </View>
               <Image
@@ -124,7 +127,7 @@ export default class Home extends Component {
                 this.props.navigation.navigate('CalendarSchedule')
               } }>
                 <Text style={ styles.calendarCardBottomText }>
-                  Ver meus horários
+                  Fazer agendamento
                 </Text>
               </TouchableOpacity>
             </View>

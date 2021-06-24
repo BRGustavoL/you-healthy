@@ -198,6 +198,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#F06D7C',
     marginRight: 10,
+  },
+  calendarPeriodInfo: {
+    width: '80%'
   }
 })
 

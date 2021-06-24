@@ -201,7 +201,7 @@ export default class MCalendarSchedule extends Component {
             <View style={ styles.dateContent }>
               <FlatList
                 data={ this.createRows(this.state.options, this.state.columns) }
-                keyExtractor={ item => item.id }
+                keyExtractor={ item => item.id.toString() }
                 numColumns={ this.state.columns }
                 renderItem={({ item }) => {
                   return (
