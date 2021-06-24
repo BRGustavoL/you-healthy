@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native'
 import MExerciseCompleted from './src/components/molecules/mExerciseCompleted/index.js'
 import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
 import MCalendarSchedule from './src/components/molecules/mCalendarSchedule/index.js'
+import MCalendarScheduleCompleted from './src/components/molecules/mCalendarScheduleCompleted/index.js'
+import ASuccessScreen from './src/components/atoms/aSuccessScreen/index.js'
 import MExerciseList from './src/components/molecules/mExerciseList/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
 import MHome from './src/components/molecules/mHome/index.js'
@@ -24,6 +26,18 @@ const config = {
     restSpeedThreshold: 0.01
   }
 }
+
+const SuccessScreen = (props) => {
+  return (
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <ASuccessScreen navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
+  )
+}
+
 const Home = (props) => {
   return (
     <SafeAreaView style={{ backgroundColor: 'white' }}>
@@ -90,6 +104,17 @@ const CalendarSchedule = (props) => {
   )
 }
 
+const CalendarScheduleCompleted = (props) => {
+  return (
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MCalendarScheduleCompleted navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
+  )
+}
+
 const Stack = createStackNavigator()
 
 class App extends Component {
@@ -134,7 +159,7 @@ class App extends Component {
                   }
                 }}
               />
-              <Stack.Screen name="Exercício Completado" component={ExerciseCompleted}
+              <Stack.Screen name="CalendarSchedule" component={CalendarSchedule}
                 options={{
                   transitionSpec: {
                     open: config,
@@ -142,7 +167,7 @@ class App extends Component {
                   }
                 }}
               />
-              <Stack.Screen name="CalendarSchedule" component={CalendarSchedule}
+              <Stack.Screen name="SuccessScreen" component={SuccessScreen}
                 options={{
                   transitionSpec: {
                     open: config,

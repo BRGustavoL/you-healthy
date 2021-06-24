@@ -9,6 +9,7 @@ import CountDown from 'react-native-countdown-component'
 import ATitle from '../../atoms/aTitle/index.js'
 import AButton from '../../atoms/aButton/index.js'
 
+import { firebase } from '../../../firebase/config.js'
 class MTimer extends Component {
   constructor (props) {
     super(props)
@@ -22,6 +23,7 @@ class MTimer extends Component {
   }
 
   render() {
+    const completedExerciesRef = firebase.firestore().collection('completed')
     return (
       <View style={ styles.container }>
         <View style={ styles.content }>
@@ -33,7 +35,19 @@ class MTimer extends Component {
               key={ this.state.timer }
               until={ 2 }
               onFinish={() => {
-                this.props.navigation.navigate('Exercício Completado', { exerciseName: this.props.exercise.name, exerciseDuration: this.props.exercise.duration })
+                completedExerciesRef.add({
+                  id: Date.now(),
+                  exercise: this.props.exercise.name,
+                  duration: (this.state.timer / 60) > 1 ? `${this.state.timer / 60} minutos` : `${this.state.timer / 60} minuto`,
+                  finishedAt: `${new Date().getDate()}/${(new Date().getMonth() + 1) < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}/${new Date().getFullYear()}`
+                })
+                this.props.navigation.navigate('SuccessScreen', {
+                  image: 'success',
+                  title: 'VOCÊ ESTÁ INDO BEM!',
+                  description: 'A cada dia que passa você fica mais saúdavel ; )',
+                  path: 'Visão Geral',
+                  button: 'Voltar para tela inicial'
+                })
               }}
               digitStyle={{ backgroundColor: 'black' }}
               digitTxtStyle={{ color: 'white' }}

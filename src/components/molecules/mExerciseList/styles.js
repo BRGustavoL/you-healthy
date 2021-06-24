@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+
   containerNoContent: {
     display: 'flex',
     width: '100%',

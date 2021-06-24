@@ -1,31 +1,20 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  exerciseCompleted: {
+  container: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingBottom: 64,
-    paddingTop: 34
   },
   textContent: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: '90%',
     paddingLeft: 30,
     paddingRight: 30,
     paddingTop: 34
   },
-  successImage: {
+  blueImage: {
     width: 320,
-    height: 200,
-    marginBottom: 40
-  },
-  mTitle: {
-    color: 'black',
-    fontSize: 40,
+    height: 320,
     marginBottom: 40
   },
   text: {
@@ -35,16 +24,19 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginTop: 10,
     textAlign: 'center',
-    letterSpacing: 1.4,
     lineHeight: 28
   },
-  successButton: {
+  actionButton: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  redirectButton: {
     width: '100%',
     color: '#3fbdf1',
     fontSize: 24,
     textAlign: 'center',
     fontWeight: 'bold',
-  }
+  },
 })
 
 export default styles

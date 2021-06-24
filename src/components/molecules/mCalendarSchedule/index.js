@@ -124,7 +124,7 @@ export default class MCalendarSchedule extends Component {
     const startDate = new Date(year, month-1, day, startHour, startMinutes)
     const endDate = new Date(year, month-1, day, endHour, endMinutes)
     
-    await Calendar.createEventAsync(newCalendarID, {
+    const scheduled = await Calendar.createEventAsync(newCalendarID, {
       title: 'Exercício Agendado',
       startDate: startDate,
       endDate: endDate,
@@ -139,6 +139,16 @@ export default class MCalendarSchedule extends Component {
         frequency: this.state.selectedFrequency === 2 ? 'weekly' : 'daily'
       }
     })
+
+    if (scheduled) {
+      this.props.navigation.navigate('SuccessScreen', {
+        image: 'schedule',
+        title: 'TUDO PRONTO!',
+        description: 'Seu agendamento foi concluído! Para visualiza-lo, basta acessar a agenda do seu celular.',
+        path: 'Visão Geral',
+        button: 'Entendi'
+      })
+    }
   }
 
   componentDidMount () {
@@ -265,7 +275,6 @@ export default class MCalendarSchedule extends Component {
           </View>
         </View>
         <TouchableOpacity onPress={ () => {
-          // this.props.navigation.navigate('Escolha um exercício')
           this.schedule()
         }}>
           <Text style={ styles.scheduleButton }>
