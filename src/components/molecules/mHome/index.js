@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Image, LogBox, ActivityIndicator, Platform } from 'react-native'
+import { View, Text, TouchableOpacity, Image, LogBox, ActivityIndicator } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../../firebase/config.js'
 import ATitle from '../../atoms/aTitle/index.js'
-import * as Calendar from 'expo-calendar'
 
 LogBox.ignoreAllLogs()
 
@@ -31,18 +30,6 @@ export default class Home extends Component {
     this.setState({ exercises: array, total: array.length, isLoading: false })
   }
 
-  doCalendar = async () => {
-    const { status } = await Calendar.requestCalendarPermissionsAsync()
-    if (status === 'granted') {
-      await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
-    }
-  }
-
-  componentDidMount () {
-    this.fetchData()
-    this.doCalendar()
-  }
-
   minutesTotalizer = () => {
     let result = []
     this.state.exercises.forEach(el => {
@@ -56,33 +43,8 @@ export default class Home extends Component {
     }
   }
 
-  createCalendar = async () => {
-    const defaultCalendarSource =
-    Platform.OS === 'ios'
-      ? await getDefaultCalendarSource()
-      : { isLocalAccount: true, name: 'Expo Calendar' }
-    const newCalendarID = await Calendar.createCalendarAsync({
-      title: 'You Healthy',
-      color: 'blue',
-      entityType: Calendar.EntityTypes.EVENT,
-      sourceId: defaultCalendarSource.id,
-      source: defaultCalendarSource,
-      name: 'internalCalendarName',
-      ownerAccount: 'personal',
-      accessLevel: Calendar.CalendarAccessLevel.OWNER
-    })
-    await Calendar.createEventAsync(newCalendarID, {
-      title: 'Exercício Agendado',
-      startDate: new Date(2021, 6-1, 25, 13, 25),
-      endDate: new Date(2021, 6-1, 25, 13, 30),
-      timeZone: 'America/Sao_Paulo',
-      alarms: [
-        {
-          relativeOffset: -1,
-          method: Calendar.AlarmMethod.ALERT
-        }
-      ]
-    })
+  componentDidMount () {
+    this.fetchData()
   }
 
   render() {
@@ -150,9 +112,6 @@ export default class Home extends Component {
                 <Text style={ styles.calendarTitle }>Próximo Exercício</Text>
                 <View style={ styles.calendarPeriodContent }>
                   <View style={ styles.calendarTag }></View>
-                  {/* <View style={ styles.calendarPeriodInfo }>
-                    { this.returnNextExerciseComponent() }
-                  </View> */}
                 </View>
               </View>
               <Image
@@ -163,7 +122,6 @@ export default class Home extends Component {
             <View style={ styles.calendarCardButton }>
               <TouchableOpacity onPress={ () => {
                 this.props.navigation.navigate('CalendarSchedule')
-                // this.createCalendar()
               } }>
                 <Text style={ styles.calendarCardBottomText }>
                   Ver meus horários

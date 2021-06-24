@@ -1,13 +1,17 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
+  outerContainer: {
     display: 'flex',
     height: '100%',
     paddingBottom: 64,
     paddingLeft: 30,
     paddingRight: 30,
     paddingTop: 34,
+  },
+  innerContainer: {
+    display: 'flex',
+    height: '100%',
   },
   pageTitle: {
     marginBottom: 24
@@ -105,6 +109,13 @@ const styles = StyleSheet.create({
   },
   radioInfo: {
     display: 'flex'
+  },
+  scheduleButton: {
+    width: '100%',
+    color: '#3fbdf1',
+    fontSize: 24,
+    textAlign: 'center',
+    fontWeight: 'bold',
   }
 })
 
