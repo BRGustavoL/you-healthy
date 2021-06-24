@@ -4,7 +4,7 @@ import styles from './styles'
 class ATitle extends Component {
   render() {
     return (
-      <View>
+      <View style={ this.props.style }>
         <Text style={ styles.title }> { this.props.title } </Text>
         <View style={ styles.tag }></View>
       </View>

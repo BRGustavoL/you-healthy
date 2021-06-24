@@ -162,12 +162,8 @@ export default class Home extends Component {
             </View>
             <View style={ styles.calendarCardButton }>
               <TouchableOpacity onPress={ () => {
-                this.createCalendar()
-                console.log('teste')
-                // this.props.navigation.navigate('Meus Exercícios', {
-                //   exercises: this.state.exercises,
-                //   total: this.state.total
-                // })
+                this.props.navigation.navigate('CalendarSchedule')
+                // this.createCalendar()
               } }>
                 <Text style={ styles.calendarCardBottomText }>
                   Ver meus horários

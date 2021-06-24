@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
-import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
 import MExerciseCompleted from './src/components/molecules/mExerciseCompleted/index.js'
+import MExerciseRegister from './src/components/molecules/mExerciseRegister/index.js'
+import MCalendarSchedule from './src/components/molecules/mCalendarSchedule/index.js'
 import MExerciseList from './src/components/molecules/mExerciseList/index.js'
 import MTimer from './src/components/molecules/mTimer/index.js'
 import MHome from './src/components/molecules/mHome/index.js'
@@ -78,6 +79,17 @@ const ExerciseCompleted = (props) => {
   )
 }
 
+const CalendarSchedule = (props) => {
+  return (
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
+      <View style={ styles.container }>
+        <StatusBar style="auto" />
+        <MCalendarSchedule navigation={ props.navigation } route={ props.route } />
+      </View>
+    </SafeAreaView>
+  )
+}
+
 const Stack = createStackNavigator()
 
 class App extends Component {
@@ -123,6 +135,14 @@ class App extends Component {
                 }}
               />
               <Stack.Screen name="Exercício Completado" component={ExerciseCompleted}
+                options={{
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <Stack.Screen name="CalendarSchedule" component={CalendarSchedule}
                 options={{
                   transitionSpec: {
                     open: config,
